@@ -31,6 +31,10 @@ describe DockingStation do
     expect (released_bike.working?) == true || (released_bike.working?) == false
   end
 
+  it "respond to return_bike" do
+    expect(subject).to respond_to :return_bike
+  end
+
 end
 
 # Setup Execute Verify
