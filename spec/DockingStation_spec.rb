@@ -21,18 +21,25 @@ describe DockingStation do
     expect released_bike == Bike
   end
 
-  it " bike responds to working?" do
-    @bike = Bike.new
-    expect(@bike).to respond_to :working?
-  end
+  # it "has no bike docked" do
+  #   station = DockingStation.new
+  #   expect(station.bike_docked).to eq(false)
+  # end
 
-  it "bike returns true if working and false if not" do
-    released_bike = Bike.new
-    expect (released_bike.working?) == true || (released_bike.working?) == false
-  end
+  # it "respond to return_bike" do
+  #   expect(subject).to respond_to :return_bike
+  # end
 
-  it "respond to return_bike" do
-    expect(subject).to respond_to :return_bike
+### Above is old version of test below
+
+  it { is_expected.to respond_to(:dock).with(1).argument }
+
+  it { is_expected.to respond_to(:bike_docked) }
+
+  it "returns docked bikes" do
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.dock(bike)).to eq bike
   end
 
 end
