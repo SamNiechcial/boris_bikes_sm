@@ -42,6 +42,16 @@ describe DockingStation do
     expect(subject.dock(bike)).to eq bike
   end
 
+  it "Raises error on releasing imaginary bike" do
+    station = DockingStation.new
+    bike = Bike.new
+    station.dock(bike)
+    released_bike = station.release_bike
+    expect { station.release_bike }.to raise_error(RuntimeError, "There's no bike docked to release!")
+  end
+
 end
+
+
 
 # Setup Execute Verify
