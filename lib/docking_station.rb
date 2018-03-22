@@ -4,33 +4,35 @@ class DockingStation
   attr_accessor :bikes
 
   def initialize()
-    @bikes = Array.new 
-  end 
+    @bikes = Array.new
+  end
 
   def dock(bike)
-    if @bikes.length > 19
-      fail "Dock is full of bikes!"
-    end
-    @bikes << bike
+    full? ? (fail "Dock is full of bikes!") : @bikes << bike
   end
 
 # How we passed section 12:
   def release_bike()
-    if @bikes.empty?
-      fail "There's no bike docked to release!"
-    end
-    @bikes.pop()
+    empty?  ? (fail "There's no bike docked to release!") : @bikes.pop()
   end
 
- 
+  private
 
-  # # Actual Section 12
-  # def release_bike
-  #   fail "There's no bike docked to release!" unless @bike
-  #   @bike
-  # end
+  def full?
+    @bikes.length > 19
+  end
+
+  def empty?
+    @bikes.empty?
+  end
 
 end
+
+# # Actual Section 12
+# def release_bike
+#   fail "There's no bike docked to release!" unless @bike
+#   @bike
+# end
 
 # bike = Bike.new
 # bike = DockingStation.dock(bike)
