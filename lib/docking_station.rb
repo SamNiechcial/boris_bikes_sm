@@ -2,6 +2,9 @@ class DockingStation
   attr_accessor :bike
 
   def dock(bike)
+    if @bike != nil
+      fail "Dock already contains bike!"
+    end
     @bike = bike
   end
 
@@ -18,7 +21,7 @@ class DockingStation
   #   fail "There's no bike docked to release!" unless @bike
   #   @bike
   # end
-    
+
 end
 
 # bike = Bike.new
