@@ -25,13 +25,14 @@ describe DockingStation do
 
   it "Raises error on trying to dock bike with full dock" do
     docking_station = DockingStation.new
-    expect { 21.times { docking_station.dock(Bike.new) } }.to raise_error(RuntimeError, "Dock is full of bikes!")
+    DockingStation::DEFAULT_CAPACITY.times { docking_station.dock(Bike.new) }
+    expect { docking_station.dock(Bike.new).to raise_error(RuntimeError, "Dock is full of bikes!") }
   end
 
-  it "Allows user to dock up to 20 bikes" do 
+  it "Allows user to dock up to 20 bikes" do
     docking_station = DockingStation.new
-    expect { 20.times { docking_station.dock Bike.new } }.not_to raise_error
-  end 
+    expect { DockingStation::DEFAULT_CAPACITY.times { docking_station.dock Bike.new } }.not_to raise_error
+  end
 end
 
 
