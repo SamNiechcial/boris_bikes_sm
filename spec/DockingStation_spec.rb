@@ -25,14 +25,26 @@ describe DockingStation do
 
   it "Raises error on trying to dock bike with full dock" do
     docking_station = DockingStation.new
-    DockingStation::DEFAULT_CAPACITY.times { docking_station.dock(Bike.new) }
+    docking_station.capacity.times { docking_station.dock(Bike.new) }
     expect { docking_station.dock(Bike.new).to raise_error(RuntimeError, "Dock is full of bikes!") }
   end
 
   it "Allows user to dock up to 20 bikes" do
     docking_station = DockingStation.new
-    expect { DockingStation::DEFAULT_CAPACITY.times { docking_station.dock Bike.new } }.not_to raise_error
+    expect { docking_station.capacity.times { docking_station.dock Bike.new } }.not_to raise_error
   end
+
+  it 'Accepts capacity asignment on initialising docking station' do 
+    docking_station = DockingStation.new(25)
+    expect { docking_station.capacity.to eq(25) }
+  end
+
+  it 'Defaults capacity assignment to default capacity on initialising docking station' do
+    docking_station = DockingStation.new()
+    expect { docking_station.capacity.to eq(20) }
+  end
+
+  #it { is_expected.to respond_to(:new).with(1).argument }
 end
 
 

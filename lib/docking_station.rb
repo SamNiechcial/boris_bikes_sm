@@ -2,10 +2,11 @@ require_relative 'bike'
 
 class DockingStation
   attr_accessor :bikes
-  DEFAULT_CAPACITY = 20
+  attr_reader :capacity
 
-  def initialize()
+  def initialize(capacity=20)
     @bikes = Array.new
+    @capacity = capacity
   end
 
   def dock(bike)
@@ -14,13 +15,13 @@ class DockingStation
 
 # How we passed section 12:
   def release_bike()
-    empty?  ? (fail "There's no bike docked to release!") : @bikes.pop()
+    empty? ? (fail "There's no bike docked to release!") : @bikes.pop()
   end
 
   private
 
   def full?
-    @bikes.length >= DEFAULT_CAPACITY
+    @bikes.length >= @capacity
   end
 
   def empty?
