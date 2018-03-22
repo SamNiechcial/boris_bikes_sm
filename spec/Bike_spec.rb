@@ -15,3 +15,4 @@ describe Bike do
     expect (released_bike.working?) == true || (released_bike.working?) == false
   end
 end
+

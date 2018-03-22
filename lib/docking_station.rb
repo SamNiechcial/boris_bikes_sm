@@ -1,20 +1,28 @@
+require_relative 'bike'
+
 class DockingStation
-  attr_accessor :bike
+  attr_accessor :bikes
+
+  def initialize()
+    @bikes = Array.new 
+  end 
 
   def dock(bike)
-    if @bike != nil
-      fail "Dock already contains bike!"
+    if @bikes.length > 19
+      fail "Dock is full of bikes!"
     end
-    @bike = bike
+    @bikes << bike
   end
 
 # How we passed section 12:
-  def release_bike
-    if @bike == nil
+  def release_bike()
+    if @bikes.empty?
       fail "There's no bike docked to release!"
     end
-    @bike = nil
+    @bikes.pop()
   end
+
+ 
 
   # # Actual Section 12
   # def release_bike

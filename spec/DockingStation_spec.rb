@@ -7,12 +7,12 @@ describe DockingStation do
 
   it { is_expected.to respond_to(:dock).with(1).argument }
 
-  it { is_expected.to respond_to(:bike) }
+  it { is_expected.to respond_to(:bikes) }
 
   it "returns docked bikes" do
     bike = Bike.new
     # subject.dock(bike)
-    expect(subject.dock(bike)).to eq bike
+    expect(subject.dock(bike)).to eq [bike]
   end
 
   it "Raises error on releasing imaginary bike" do
@@ -24,13 +24,17 @@ describe DockingStation do
   end
 
   it "Raises error on trying to dock bike with full dock" do
-    station = DockingStation.new
-    bike = Bike.new
-    station.dock(bike)
-    bike2 = Bike.new
-    expect { station.dock(bike2) }.to raise_error(RuntimeError, "Dock already contains bike!")
+    docking_station = DockingStation.new
+    expect { 21.times { docking_station.dock(Bike.new) } }.to raise_error(RuntimeError, "Dock is full of bikes!")
   end
+
+  it "Allows user to dock up to 20 bikes" do 
+    docking_station = DockingStation.new
+    expect { 20.times { docking_station.dock Bike.new } }.not_to raise_error
+  end 
 end
+
+
 
 # Setup Execute Verify
 
